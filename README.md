@@ -70,25 +70,25 @@ See [docs/roadmap.md](docs/roadmap.md) for phased expansion.
 
 ### Local Development
 
+**Quick demo (no Docker):** uses synthetic documents in [`data/public/`](data/public/).
+
+```powershell
+# From repo root
+pip install -e "packages/domain[dev]" -e "services/intelligence"
+$env:PYTHONPATH = "packages/domain/src;services/intelligence/src;services/graph/src;services/gateway/src"
+python -m uvicorn gateway.main:app --port 8000
+```
+
+Then follow [docs/TESTING.md](docs/TESTING.md) or run `scripts/verify_demo.ps1`.
+
 ```bash
-# Start infrastructure (Postgres, Neo4j, Redis, Qdrant, MinIO)
+# Full stack (optional — requires Docker)
 docker compose -f infrastructure/docker-compose.yml up -d
-
-# Install Python dependencies (from repo root)
-pip install -e "packages/domain[dev]"
-pip install -e "services/ingestion[dev]"
-pip install -e "services/graph[dev]"
-pip install -e "services/intelligence[dev]"
-pip install -e "services/gateway[dev]"
-
-# Run API gateway
-uvicorn gateway.main:app --reload --app-dir services/gateway/src --port 8000
-
-# Run web app
 cd apps/web && npm install && npm run dev
 ```
 
-Open http://localhost:3000 (web) and http://localhost:8000/docs (API).
+Open http://localhost:3000 (web) and http://localhost:8000/docs (API).  
+Use program ID **`dap-100`** for demo queries.
 
 ## Supported Standards (Regulatory Layer)
 

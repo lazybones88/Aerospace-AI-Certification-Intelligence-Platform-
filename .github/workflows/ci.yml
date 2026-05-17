@@ -16,10 +16,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install domain package and test
+      - name: Install packages and test
         run: |
           pip install -e "packages/domain[dev]"
-          pytest packages/domain/tests -q
+          pip install -e "services/intelligence"
+          pytest packages/domain/tests services/intelligence/tests -q
 
       - name: Lint (ruff)
         run: |

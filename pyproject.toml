@@ -5,5 +5,8 @@ description = "Aerospace AI Certification Intelligence Platform — monorepo roo
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]
-testpaths = ["packages/domain/tests"]
-pythonpath = ["packages/domain/src"]
+testpaths = ["packages/domain/tests", "services/intelligence/tests"]
+pythonpath = [
+  "packages/domain/src",
+  "services/intelligence/src",
+]

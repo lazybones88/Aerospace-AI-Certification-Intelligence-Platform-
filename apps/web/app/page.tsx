@@ -13,7 +13,7 @@ export default function Home() {
   const [question, setQuestion] = useState(
     "Which unresolved certification risks could delay flight testing?"
   );
-  const [programId] = useState("demo-program");
+  const [programId] = useState("dap-100");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<AskResponse | null>(null);
   const [error, setError] = useState<string | null>(null);

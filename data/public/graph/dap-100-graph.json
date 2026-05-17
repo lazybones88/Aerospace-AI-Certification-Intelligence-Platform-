@@ -1,0 +1,31 @@
+{
+  "program_id": "dap-100",
+  "description": "Fictional demo graph for DAP-100 FCC certification traceability",
+  "nodes": [
+    {"id": "sw-req-1042", "entity_type": "requirement", "title": "SW-REQ-1042 Sensor fusion update rate"},
+    {"id": "sw-req-1060", "entity_type": "requirement", "title": "SW-REQ-1060 Firmware integrity at boot"},
+    {"id": "sw-req-1055", "entity_type": "requirement", "title": "SW-REQ-1055 Fail-safe mode entry"},
+    {"id": "build-2.4.1", "entity_type": "software_build", "title": "FCC-SW-2.4.1"},
+    {"id": "tc-fcc-020", "entity_type": "test_case", "title": "TC-FCC-020 Sensor fusion output rate"},
+    {"id": "tc-fcc-040", "entity_type": "test_case", "title": "TC-FCC-040 Boot firmware signature"},
+    {"id": "haz-fcc-003", "entity_type": "hazard", "title": "HAZ-FCC-003 Erroneous attitude data"},
+    {"id": "obj-a7-fcc", "entity_type": "certification_objective", "title": "DO-178C Table A-7 verification objective"},
+    {"id": "cr-fcc-241", "entity_type": "document", "title": "CR-FCC-241 Firmware v2.4.1"},
+    {"id": "ft-gate-3", "entity_type": "document", "title": "FT-GATE-3 Flight test readiness gate"}
+  ],
+  "edges": [
+    {"from": "build-2.4.1", "to": "sw-req-1042", "type": "IMPLEMENTS"},
+    {"from": "build-2.4.1", "to": "sw-req-1060", "type": "IMPLEMENTS"},
+    {"from": "tc-fcc-020", "to": "sw-req-1042", "type": "VERIFIES"},
+    {"from": "tc-fcc-040", "to": "sw-req-1060", "type": "VERIFIES"},
+    {"from": "sw-req-1042", "to": "haz-fcc-003", "type": "AFFECTS"},
+    {"from": "haz-fcc-003", "to": "obj-a7-fcc", "type": "SATISFIES"},
+    {"from": "tc-fcc-020", "to": "obj-a7-fcc", "type": "SATISFIES"},
+    {"from": "cr-fcc-241", "to": "build-2.4.1", "type": "AFFECTS"},
+    {"from": "cr-fcc-241", "to": "sw-req-1042", "type": "AFFECTS"},
+    {"from": "cr-fcc-241", "to": "tc-fcc-020", "type": "AFFECTS"},
+    {"from": "cr-fcc-241", "to": "haz-fcc-003", "type": "AFFECTS"},
+    {"from": "haz-fcc-003", "to": "ft-gate-3", "type": "AFFECTS"},
+    {"from": "sw-req-1042", "to": "ft-gate-3", "type": "AFFECTS"}
+  ]
+}
