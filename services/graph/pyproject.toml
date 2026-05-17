@@ -1,0 +1,20 @@
+[project]
+name = "aero-cert-graph"
+version = "0.1.0"
+description = "Knowledge graph engine for certification traceability and impact analysis"
+requires-python = ">=3.11"
+dependencies = [
+    "aero-cert-domain",
+    "neo4j>=5.19",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/graph_engine"]
